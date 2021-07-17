@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,8 +9,9 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
+-->
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/menuImage"
         android:layout_width="57dp"
         android:layout_height="51dp"
@@ -82,9 +85,9 @@
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="@+id/menuImage"
         app:layout_constraintTop_toBottomOf="@+id/logoname"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.047" />-->
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/imageButton10"
         android:layout_width="56dp"
         android:layout_height="51dp"
@@ -629,7 +632,24 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imAud3"
         app:layout_constraintTop_toBottomOf="@+id/imAud8"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.2" />-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--
+</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>-->
