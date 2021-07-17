@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CHORDZY</string>
+    <string name="close_drawer">nav_close</string>
+    <string name="open_drawer">nav_open</string>
+</resources>
