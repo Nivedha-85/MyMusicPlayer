@@ -32,6 +32,35 @@ android:layout_height="match_parent"
 tools:context=".MainActivity1"
 tools:ignore="HardcodedText">
 
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".MainActivity">
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:layout_marginTop="1dp"
+            android:id="@+id/listView"
+            android:dividerHeight="10.0sp" >
+
+
+
+        </ListView>
+    </RelativeLayout>-->
+<!--this the navigation view which draws
+    and shows the navigation drawer-->
+<!--include the menu created in the menu folder-->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -53,13 +82,20 @@ tools:ignore="HardcodedText">
 
         </ListView>
     </RelativeLayout>
-<!--this the navigation view which draws
-    and shows the navigation drawer-->
-<!--include the menu created in the menu folder-->
 <com.google.android.material.navigation.NavigationView
+    android:id="@+id/nav_menu"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     app:menu="@menu/drawer_menu" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:menu="@menu/top_right_menu" />
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,10 +1,16 @@
 package com.example.mplayer;
 
+import androidx.core.view.GravityCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -19,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -37,17 +44,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import static com.example.mplayer.R.string.close_drawer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-
+   /* public AppBarConfiguration mAppBarConfiguration;*/
     ListView listView;
     String[] items;
     @Override
@@ -65,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.drawer);
+        NavigationView navigationView = findViewById(R.id.nav_menu);
+        navigationView.setNavigationItemSelectedListener(this);
+        /*mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.home,R.id.fav,R.id.newPlaylist
+        ).setDrawerLayout(drawerLayout).build();
+
+        NavController navController = Navigation.findNavController(this,R.id.home);
+        NavigationUI.setupActionBarWithNavController(this,navController,mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView,navController);*/
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer);
 
 
@@ -75,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /*if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }*/
 
 }
     @Override
@@ -88,7 +110,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.drawer_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this,R.id.home);
+        return NavigationUI.navigateUp(navController,mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+
+    }
+*/
     public void runtimePermission()
     {
         Dexter.withContext(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO)
@@ -154,7 +189,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                Toast.makeText(this, "This is Home", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new homeFragment()).commit();
+                break;
+            case R.id.nav_fav:
+               /* getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FavFragment()).commit();
+                break;*/
+                Toast.makeText(this, "Favorites", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_newPlaylist:
+                Toast.makeText(this, "New Playlist", Toast.LENGTH_SHORT).show();
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
+
+
+ /*   @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int i = item.getItemId();
+        if(i == R.id.home)
+        {
+            Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        return true;
+
+    }*/
 
 
     class customAdapter extends BaseAdapter{
